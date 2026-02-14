@@ -1,55 +1,42 @@
-Given a square matrix, calculate the absolute difference between the sums of its diagonals.
+Given an array of integers, calculate the ratios of its elements that are , , and . Print the decimal value of each fraction on a new line with 6 places after the decimal.
 
-For example, the square matrix  is shown below:
+Note: This challenge introduces precision problems. The test cases are scaled to six decimal places, though answers with absolute error of up to  are acceptable.
 
-1 2 3
-4 5 6
-9 8 9  
-The left-to-right diagonal = .
-The right-to-left diagonal = .
-Their absolute difference is .
+Example
 
-Function description
+There are  elements: two positive, two negative and one zero. Their ratios are ,  and . Results are printed as:
 
-Complete the  function with the following parameter:
+0.400000
+0.400000
+0.200000
+Function Description
 
-: a 2-D array of integers
-Return
+Complete the  function with the following parameter(s):
 
-: the absolute difference in sums along the diagonals
+: an array of integers
+Print
+Print the ratios of positive, negative and zero values in the array. Each value should be printed on a separate line with  digits after the decimal. The function should not return a value.
+
 Input Format
 
-The first line contains a single integer, , the number of rows and columns in the square matrix .
-Each of the next  lines describes a row, , and consists of  space-separated integers .
+The first line contains an integer, , the size of the array.
+The second line contains  space-separated integers that describe .
 
-Constraints
 
 Sample Input
 
-STDIN      Function
------      --------
-3           arr[][] sizes n = 3, m = 3
-11 2 4     arr = [[11, 2, 4], [4, 5, 6], [10, 8, -12]]
-4 5 6
-10 8 -12
+STDIN           Function
+-----           --------
+6               arr[] size n = 6
+-4 3 -9 0 4 1   arr = [-4, 3, -9, 0, 4, 1]
 Sample Output
 
-15
+0.500000
+0.333333
+0.166667
 Explanation
 
-The primary diagonal is:
+There are  positive numbers,  negative numbers, and  zero in the array.
+The proportions of occurrence are positive: , negative:  and zeros: .
 
-11
-   5
-     -12
-Sum across the primary diagonal: .
-
-The secondary diagonal is:
-
-     4
-   5
-10
-Sum across the secondary diagonal: 
-Difference: 
-
-Note: |x| is the absolute value of x.
+![alt text](image.png)

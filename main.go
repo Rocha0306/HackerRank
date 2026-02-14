@@ -1,55 +1,87 @@
 package main
 
 import (
-	"math/rand"
+	"bufio"
+	"fmt"
+	"io"
+	"math/rand/v2"
+	"strings"
 )
 
-func diagonalDifference(arr [][]int32) int32 {
-	var elementos_diagnoal_1 []int32
-	var elementos_diagnoal_2 []int32
-	i := 0
-	for j := len(arr) - 1; j >= 0; j-- {
-		elementos_diagnoal_2 = append(elementos_diagnoal_2, arr[j][i])
-		i++
-	}
+/*
+ * Complete the 'plusMinus' function below.
+ *
+ * The function accepts INTEGER_ARRAY arr as parameter.
+ */
 
-	i = 0
-	for j := 0; j < len(arr); j++ {
-		if i == j {
-			elementos_diagnoal_1 = append(elementos_diagnoal_1, arr[i][i])
-			i++
+func plusMinus(arr []int32) {
+	var numeros_positivos []int32
+	var numeros_negativos []int32
+	var contagem_zeros int = 0
+	numero_max_elementos := len(arr)
+
+	for i := 0; i < len(arr); i++ {
+		if arr[i] > 0 {
+			numeros_positivos = append(numeros_positivos, arr[i])
+		} else if arr[i] < 0 {
+			numeros_negativos = append(numeros_negativos, arr[i])
+		} else {
+			contagem_zeros++
 		}
 	}
 
-	var soma_diagonal_1 int32 = 0
-	var soma_diagnoal_2 int32 = 0
+	max_numeros_positivos := float32(len(numeros_positivos))
+	max_numeros_negativos := float32(len(numeros_negativos))
+	max_zeros := float32(contagem_zeros)
+	max_elementos := float32(numero_max_elementos)
 
-	for i := 0; i < len(elementos_diagnoal_1); i++ {
-		soma_diagonal_1 += elementos_diagnoal_1[i]
-		soma_diagnoal_2 += elementos_diagnoal_2[i]
-	}
+	divisao_positivos := max_numeros_positivos / max_elementos
+	divisao_negativos := max_numeros_negativos / max_elementos
+	divisao_zeros := max_zeros / max_elementos
 
-	resultado := soma_diagonal_1 - soma_diagnoal_2
-
-	if resultado < 0 {
-		resultado = -resultado
-	}
-
-	return resultado
+	fmt.Printf("%.6f\n", divisao_positivos)
+	fmt.Printf("%.6f\n", divisao_negativos)
+	fmt.Printf("%.6f\n", divisao_zeros)
 
 }
 
 func main() {
-	var array [][]int //array bidimensional
+	//reader := bufio.NewReaderSize(os.Stdin, 16*1024*1024)
 
-	for i := 0; i < 2; i++ {
-		linha := []int{} // cria uma nova linha
+	//nTemp, err := strconv.ParseInt(strings.TrimSpace(readLine(reader)), 10, 64)
+	//checkError(err)
+	//n := int32(nTemp)
 
-		for j := 0; j < 2; j++ {
-			linha = append(linha, rand.Intn(10)) // adiciona à linha
+	//arrTemp := strings.Split(strings.TrimSpace(readLine(reader)), " ")
+
+	var arr []int32
+
+	for i := 0; i < 10; i++ {
+
+		numero := int32(rand.IntN(50))
+
+		if i%2 == 0 {
+			numero = -numero
+			arr = append(arr, numero)
 		}
 
-		array = append(array, linha) // adiciona a linha completa ao array
+		arr = append(arr, numero)
 	}
 
+	plusMinus(arr)
+}
+
+func readLine(reader *bufio.Reader) string {
+	str, _, err := reader.ReadLine()
+	if err == io.EOF {
+		return ""
+	}
+
+	return strings.TrimRight(string(str), "\r\n")
+}
+
+func checkError(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
