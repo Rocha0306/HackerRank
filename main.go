@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math/rand"
 )
 
@@ -30,7 +29,13 @@ func diagonalDifference(arr [][]int32) int32 {
 		soma_diagnoal_2 += elementos_diagnoal_2[i]
 	}
 
-	return -(soma_diagonal_1 - soma_diagnoal_2)
+	resultado := soma_diagonal_1 - soma_diagnoal_2
+
+	if resultado < 0 {
+		resultado = -resultado
+	}
+
+	return resultado
 
 }
 
@@ -47,5 +52,4 @@ func main() {
 		array = append(array, linha) // adiciona a linha completa ao array
 	}
 
-	fmt.Print(diagonalDifference(array))
 }
